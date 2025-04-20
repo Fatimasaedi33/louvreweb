@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View 3D Model</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f5dc, #8b5d33);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h2 {
+            color: #a77105;
+            margin-top: 100px;
+
+        }
+
+        /* أزرار التحكم */
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #8b5d33;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: bisque;
+            transform: scale(1.1);
+        }
+
+        /* زر الإغلاق في الأعلى */
+        .btn-container {
+            display: flex;
+            justify-content: flex-end;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+        }
+
+        /* نموذج العرض */
+        model-viewer {
+            width: 100%;
+            max-width: 1020px;
+            min-height: 550px;
+            height: 80vh;
+            margin-top: 70px;
+            border: 5px solid #8b5d33;
+            border-radius: 10px;
+        }
+
+        /* مؤشر التحميل */
+        #loading {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        /* زر AR في الأسفل */
+        .bottom-btn {
+            margin-bottom: 100px;
+            padding: 10px;
+            width: 200px;
+        }
+
+        .bottom-btn:hover {
+            background-color: rgb(165, 129, 81);
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- زر إغلاق الجولة -->
+    <div class="btn-container">
+        <a href="feedback.html" class="btn">Close Tour</a>
+    </div>
+
+    <h2>View 3D Model and AR</h2>  
+
+    <!-- مؤشر التحميل -->
+    <div id="loading" style="margin-bottom: -50px;">Download...</div>
+
+    <!-- عرض النموذج ثلاثي الأبعاد بدون صورة السماء -->
+    <model-viewer 
+        src="models/louver.glb" 
+        alt="نموذج ثلاثي الأبعاد" 
+        auto-rotate 
+        camera-controls 
+        touch-action="none"
+        disable-tap
+        interaction-prompt="auto"
+        min-camera-orbit="auto auto 5m"
+        max-camera-orbit="auto auto 20m"
+        min-field-of-view="10deg"
+        max-field-of-view="80deg"
+        exposure="2" 
+        shadow-intensity="0.5" 
+        ar
+        ar-modes="webxr scene-viewer quick-look">
+    </model-viewer>
+
+    <!-- زر لعرض النموذج في AR -->
+    <div class="bottom-btn">
+        <button class="btn" onclick="openAR()">See in AR</button>
+    </div>
+
+    <script>
+        const modelViewer = document.querySelector("model-viewer");
+        const loading = document.getElementById("loading");
+
+        // إخفاء مؤشر التحميل عند اكتمال التحميل
+        modelViewer.addEventListener('load', () => {
+            loading.style.display = 'none';
+        });
+
+        // عرض تقدم التحميل
+        modelViewer.addEventListener('progress', (event) => {
+            loading.style.display = 'block';
+            loading.textContent = `loading: ${Math.round(event.detail.totalProgress * 100)}%`;
+        });
+
+        // تفعيل AR
+        function openAR() {
+            if (modelViewer.activateAR) {
+                modelViewer.activateAR();
+            } else {
+                alert("خاصية AR غير مدعومة على هذا الجهاز.");
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // تحديد جميع iframes الخاصة بالنماذج
+        const models = document.querySelectorAll('.model iframe'); 
+        let modelLinks = [];
+    
+        models.forEach(iframe => {
+            if (iframe.src) {
+                modelLinks.push(iframe.src); // حفظ الروابط في مصفوفة
+            }
+        });
+    
+        // حفظ الروابط في Firebase
+        function saveModelLinks() {
+            if (modelLinks.length > 0) {
+                set(ref(database, 'models/'), modelLinks)
+                .then(() => {
+                    console.log('✅ تم حفظ جميع روابط النماذج بنجاح في Firebase.');
+                })
+                .catch((error) => {
+                    console.error('❌ خطأ في حفظ الروابط: ', error);
+                });
+            }
+        }
+    
+        // تحميل Lazy Loading لجميع iframes
+        function enableLazyLoading() {
+            var iframes = document.querySelectorAll('iframe');
+            iframes.forEach(function(iframe) {
+                iframe.setAttribute('loading', 'lazy'); // إضافة lazy loading
+            });
+        }
+    
+        // إضافة رابط عند مرور الماوس
+        function addHoverLink() {
+            const models = document.querySelectorAll('.model');
+            models.forEach(model => {
+                model.addEventListener('mouseenter', function() {
+                    if (!model.querySelector('.louvre-link')) {
+                        // إضافة الرابط عند المرور بالماوس
+                        let link = document.createElement('a');
+                        link.href = "https://www.louvre.fr/en";
+                        link.target = "_blank";
+                        link.innerText = "زيارة موقع متحف اللوفر";
+                        link.classList.add('louvre-link'); // إضافة كلاس لربط التنسيق
+                        model.appendChild(link); // إضافة الرابط داخل النموذج
+                    }
+                });
+    
+                model.addEventListener('mouseleave', function() {
+                    // إزالة الرابط عند مغادرة الماوس
+                    const existingLink = model.querySelector('.louvre-link');
+                    if (existingLink) {
+                        existingLink.remove(); // إزالة الرابط
+                    }
+                });
+            });
+        }
+    
+        // استدعاء الدوال عند تحميل الصفحة
+        window.addEventListener('load', function() {
+            enableLazyLoading(); // تفعيل الـ lazy loading
+            saveModelLinks(); // حفظ الروابط في Firebase
+            addHoverLink(); // إضافة الرابط عند المرور بالماوس
+        });
+    </script>
+    
+    
+    
+    <meta http-equiv="Permissions-Policy" content="accelerometer=(self), gyroscope=(self), magnetometer=(self), xr-spatial-tracking=(self)">
+    
+    
+
+
+
+
+
+
+
+    /* Footer */
+  footer {
+    background-image: url('image/footers.jpeg');
+    height: 300px;
+    color: white;
+    padding: 20px;
+    text-decoration: none;
+  }
+
+  .footer-menu {
+    margin-bottom: 20px;
+    margin-top: 30px;
+    padding: 40px;
+    text-decoration: none;
+  }
+
+  .footer-menu a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    margin: 0 50px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 250px;
+  }
+
+  .footer-menu a:hover {
+    text-decoration: none;
+  }
+
+  .social-icons {
+    margin-top: 10px;
+    text-decoration: none;
+  }
+
+  .social-icons img {
+    width: 37px;
+    height: 35px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: white;
+    margin: 0 10px;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+  .social-icons a {
+    text-decoration: none;
+  }
+
+  .social-icons img:hover {
+    opacity: 0.8;
+  }
+
+  /* فاصل بين الأقسام */
+  .separator {
+    width: 100%;
+    height: 250px;
+    background: url('image/dinvas.png') no-repeat center center;
+    background-size: cover;
+    margin: 20px 0;
+  }
+
+  .image-separator {
+    width: 100%;
+    height: 250px;
+    background: url('image/divsc.jpeg') no-repeat center center;
+    background-size: cover;
+    margin: 20px 0;
+  }

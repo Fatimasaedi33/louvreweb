@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="stylesf.css" />
+    <title>Session Feedback</title>
+
+    <style>
+        .stars {
+            display: flex;
+            justify-content: center;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .star {
+            color: grey;
+            transition: color 0.3s;
+        }
+        .star.selected {
+            color: gold;
+        }
+        .logo img {
+            height: 50px;
+            width: auto;
+            margin-left: 160px;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 300px;
+            animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-content button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: #7B4B1D;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #loadingIndicator {
+            display: none;
+            margin: 10px auto;
+            text-align: center;
+            color: #7B4B1D;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="logo" style="margin-bottom: 0;">
+        <img src="image/logolouver.png" alt="لوجو الموقع" />
+    </div>
+    <nav class="menu">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="index.html#contact" style="font-size: 15px; width: 140px; height: 40px; border-radius: 3px; margin-top: 20px; text-decoration-line: none; background-color:#7B4B1D; color: #fff; text-align:center; padding: 10px; margin-left: 30px;">
+        Get in Touch
+    </a>
+</header>
+
+<div class="container">
+    <h1>Session Feedback</h1>
+    <p>Please rate your experience below</p>
+    <div class="stars">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+        <span id="starDisplay" style="font-size: 15px; margin-left: 10px; margin-top: 12px;">0/5</span>
+    </div>
+    <textarea class="feedback-box" id="feedbackText" placeholder="Your Feedback :"></textarea><br />
+    <button class="submit-btn" id="submitBtn">Submit</button>
+    <div id="loadingIndicator">Sending your feedback...</div>
+</div>
+
+<div id="modalOverlay" class="modal-overlay">
+    <div class="modal-content">
+        <p id="modalMessage">Message goes here</p>
+        <button id="modalCloseBtn">OK</button>
+    </div>
+</div>
+
+<footer>
+    <nav class="footer-menu" style="margin-left: 140px; margin-top:-260px ; padding-bottom: 3px; text-decoration: none; display: flex; align-items: center;">
+        <a href="index.html#home" style="margin-right: 15px;">Home</a>
+        <a href="index.html#abou" style="margin-right: 15px;">About</a>
+        <a style="margin-right: 15px;">
+            <div class="logo" style="margin-bottom: 0;">
+                <img src="image/logolouver.png" alt="لوجو الموقع" style="height: 50px;" class="log">
+            </div>
+        </a>
+        <a href="index.html#services" style="margin-right: 15px;">Service</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+    
+    <div class="social-icons">
+        <a href="https://www.instagram.com/museelouvre/" target="_blank"> <img src="image/nstagram.png" alt=""> </a>
+        <a href="https://www.facebook.com/museedulouvre/" target="_blank"><img src="image/facebokx.png" alt=""> </a>
+        <a href="https://www.twitter.com/MuseeLouvre" target="_blank"><img src="image/twitter.png" alt=""> </a>
+        <a href="https://www.linkedin.com/company/museedulouver" target="_blank"><img src="image/linkedlist.png" alt=""> </a>
+        <a href="https://www.whatsapp.com/send?phone=1234567890" target="_blank"><img src="image/whatsAppim.png" alt=""> </a>
+    </div>
+    <p  style="margin-top: 50px;">copyright© 2024 LOUVRE masterpieces</p>
+</footer>
+
+<!-- تم تحديث إصدار Firebase إلى الأحدث -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+<script>
+    // تهيئة Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyDK5pm_X_4dKvyye-H4LCFezgwyIaoZr_0",
+        authDomain: "louver3dfinal.firebaseapp.com",
+        databaseURL: "https://louver3dfinal-default-rtdb.firebaseio.com",
+        projectId: "louver3dfinal",
+        storageBucket: "louver3dfinal.firebasestorage.app",
+        messagingSenderId: "18851056045",
+        appId: "1:18851056045:web:f8c4f8751eb11e1ddaf924",
+        measurementId: "G-1JCCKBL5BL"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    let selectedStars = 0;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const stars = document.querySelectorAll('.star');
+        const feedbackText = document.getElementById('feedbackText');
+        const submitBtn = document.getElementById('submitBtn');
+        const starDisplay = document.getElementById('starDisplay');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalMessage = document.getElementById('modalMessage');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+        function showModal(message) {
+            modalMessage.textContent = message;
+            modalOverlay.style.display = 'flex';
+        }
+
+        modalCloseBtn.addEventListener('click', () => {
+            modalOverlay.style.display = 'none';
+        });
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                selectedStars = parseInt(star.getAttribute('data-value'));
+                updateStars();
+            });
+
+            star.addEventListener('mouseover', () => {
+                highlightStars(parseInt(star.getAttribute('data-value')));
+            });
+
+            star.addEventListener('mouseout', () => {
+                highlightStars(selectedStars);
+            });
+        });
+
+        function updateStars() {
+            stars.forEach(star => {
+                const starValue = parseInt(star.getAttribute('data-value'));
+                star.classList.toggle('selected', starValue <= selectedStars);
+            });
+            starDisplay.textContent = selectedStars + '/5';
+        }
+
+        function highlightStars(value) {
+            stars.forEach(star => {
+                const starValue = parseInt(star.getAttribute('data-value'));
+                star.classList.toggle('selected', starValue <= value);
+            });
+        }
+
+        submitBtn.addEventListener('click', async () => {
+            const feedback = feedbackText.value.trim();
+            if (selectedStars === 0 || feedback === "") {
+                showModal("Please provide both a rating and feedback.");
+                return;
+            }
+
+            // تعطيل الزر وإظهار مؤشر التحميل
+            submitBtn.disabled = true;
+            loadingIndicator.style.display = 'block';
+            submitBtn.textContent = "Sending...";
+
+            try {
+                const feedbackData = {
+                    stars: selectedStars,
+                    opinion: feedback,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                };
+
+                // إرسال البيانات إلى Firebase
+                const feedbackRef = database.ref('feedback');
+                await feedbackRef.push(feedbackData);
+                
+                showModal("Thank you for your feedback! 😊");
+                console.log("✅ Data sent to Firebase:", feedbackData);
+                feedbackText.value = "";
+                selectedStars = 0;
+                updateStars();
+            } catch (error) {
+                console.error("❌ Error sending data:", error);
+                showModal("An error occurred. Please try again.");
+            } finally {
+                // إعادة تمكين الزر وإخفاء مؤشر التحميل
+                submitBtn.disabled = false;
+                loadingIndicator.style.display = 'none';
+                submitBtn.textContent = "Submit";
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

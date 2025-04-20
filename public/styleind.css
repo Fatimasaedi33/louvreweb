@@ -1,0 +1,286 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+  }
+  
+  .home {
+    background-image: url('image/home.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+  
+  .info-icon {
+    position: absolute;
+    top: 61%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 16px;
+    height: 16px;
+    line-height: 20px;
+    background-color: #fff;
+    color: #b2937d;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #b2937d;
+    cursor: pointer;
+  }
+  
+  header {
+    background-image: url('image/home.png');
+    display: flex;
+    justify-content: center;
+    padding: 30px 50px;
+    background-size: cover;
+    color: white;
+    font-size: larger;
+  }
+  
+  .menu a {
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+    padding: 10px;
+    font-size: small;
+    border-radius: 5px;
+  }
+  
+  button {
+    color: white;
+    background-color: #8b4513;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  
+  .home-content h1 {
+    font-size: 48px;
+    padding-bottom: 100px;
+    margin: 50px;
+  }
+  
+  /* Media Queries for responsiveness */
+  
+  /* للشاشات الصغيرة (الهواتف) */
+  @media (max-width: 576px) {
+    body {
+      font-size: 14px;
+    }
+  
+    header {
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+    }
+  
+    .menu {
+      flex-direction: column;
+      width: 100%;
+      gap: 5px;
+    }
+  
+    .service-box {
+      width: 100%;
+      margin: 10px 0;
+    }
+  
+    .service-box img {
+      width: 90%;
+    }
+  
+    .contact form {
+      width: 100%;
+    }
+  
+    .contact .form-row input,
+    .contact textarea,
+    .contact button {
+      font-size: 14px;
+      padding: 12px;
+      width: 100%;
+    }
+  
+    .home-content h1 {
+      font-size: 28px;
+      margin: 15px;
+    }
+  
+    .about-section .section {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .section img {
+      width: 100%;
+    }
+  
+    .footer-menu {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer-menu a {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+  }
+  
+  /* للشاشات المتوسطة (768px) */
+  @media (max-width: 768px) {
+    .home {
+      height: 100vh;
+      background-size: cover;
+    }
+    
+    .home-content h1 {
+      font-size: 36px;
+      margin: 30px;
+    }
+  
+    button {
+      font-size: 16px;
+      padding: 14px 28px;
+    }
+  
+    header {
+      padding: 20px;
+      background-size: cover;
+    }
+  
+    .menu a {
+      font-size: 14px;
+    }
+  }
+  
+  /* للشاشات المتوسطة (الأجهزة اللوحية) */
+  @media (max-width: 1024px) {
+    .home {
+      height: 550px;
+    }
+  
+    .service-box {
+      width: 45%;
+    }
+  
+    .service-box img {
+      width: 90%;
+    }
+  
+    .contact form {
+      width: 80%;
+    }
+  
+    .contact .form-row input,
+    .contact textarea {
+      font-size: 16px;
+      width: 100%;
+    }
+  
+    .contact button {
+      width: 100%;
+    }
+  }
+  
+  /* للشاشات الكبيرة (أجهزة الكمبيوتر) */
+  @media (min-width: 1025px) {
+    .service-box {
+      width: 30%;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  @media (max-width: 768px) {
+    .contact form {
+      width: 80%; /* جعل عرض النموذج ثابتًا */
+      margin: 0 auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* توسيط المحتوى */
+    }
+  
+    .contact .form-row {
+      display: flex;
+      justify-content: center; /* توسيط العناصر */
+      gap: 15px; /* مسافة بين الحقول */
+      width: 100%;
+      max-width: 700px; /* جعل عرض الحاوية مساويًا للـ textarea والزر */
+    }
+  
+    .contact .form-row input {
+      flex: 1;
+      background-color: rgba(229, 206, 164, 0.3);
+      color: black;
+      padding: 14px;
+      height: 60px;
+      font-size: 17px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      font-family: Arial Black;
+      -webkit-text-fill-color: #b2937d;
+      text-align: center;
+      width: 50%; /* جعل كل حقل يأخذ نصف عرض الحاوية */
+    }
+  
+    .contact textarea,
+    .contact button {
+      width: 100%; /* جعلها تأخذ نفس عرض .form-row */
+      max-width: 700px; /* ضبط الحد الأقصى للعرض */
+      font-size: 17px;
+      border-radius: 30px;
+    }
+  
+    .contact textarea {
+      height: 200px;
+      padding-left: 15px;
+      padding-top: 15px;
+    }
+  
+    .contact button {
+      height: 65px;
+      padding: 10px;
+      font-size: 20px;
+      margin-top: 10px;
+      background-color: #b2937d;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  
+  

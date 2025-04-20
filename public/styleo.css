@@ -1,0 +1,189 @@
+/* إعدادات عامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #F1E4CE 40%, #7B4B1D 70%);
+    color: white;
+    height: 100vh;
+    padding: 20px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/golden-texture.png'),
+                linear-gradient(135deg, #F1E4CE 40%, #7B4B1D 70%);
+    opacity: 0.9;
+    z-index: -1;
+}
+
+/* تنسيق الهيدر */
+header {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+/* تنسيق زر الإغلاق */
+.close-btn {
+    background-color: #e3c48f;
+    color: #7B4B1D;
+    font-size: 18px;
+    padding: 15px 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #F1E4CE;
+    transition: all 0.3s ease-in-out;
+}
+
+.close-btn:hover {
+    background-color: #E3C9A5;
+    box-shadow: 0 0 25px #F1E4CE;
+    transform: scale(1.1);
+}
+
+/* تنسيق معرض النماذج */
+.models-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px 20px;
+    padding: 20px;
+    position: relative;
+}
+
+/* تنسيق كل نموذج */
+.model {
+    background: url('https://www.transparenttextures.com/patterns/golden-texture.png'),
+                linear-gradient(135deg, #F1E4CE 40%, #7B4B1D 70%);
+    background-size: cover;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease-in-out, border 0.3s ease-in-out;
+    border: none;
+    box-shadow: 0 0 10px rgba(241, 228, 206, 0.5);
+    padding: 10px;
+    position: relative;
+}
+
+/* تأثير عند المرور على النموذج */
+.model:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(241, 228, 206, 0.8);
+    border: 2px solid #F1E4CE;
+}
+
+/* تنسيق الـ iframe داخل النماذج */
+iframe {
+    width: 100%;
+    height: 350px;
+    border: none;
+    background: transparent;
+}
+
+/* تنسيق التسمية (Caption) */
+.caption {
+    background-color: #F1E4CE;
+    color: #7B4B1D;
+    padding: 8px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50px;
+    display: inline-block;
+    max-width: 90%;
+    text-align: center;
+    margin: 10px auto;
+}
+
+.caption p {
+    font-size: 10px;
+    text-align: left;
+    padding: 10px;
+}
+
+.caption h3 {
+    font-size: 14px;
+}
+
+/* تنسيق الرابط الذي يظهر عند المرور على النموذج */
+.model .link {
+    display: none;
+    position: absolute;
+    top: 10px; /* وضع الرابط في أعلى النموذج */
+    right: 10px; /* تحديد الجهة اليمنى */
+    background-color: rgba(181, 128, 22, 0.8);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 50px; /* جعل الرابط دائري */
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.model:hover .link {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-10px); /* تحريك الرابط للأعلى عند الظهور */
+}
+
+.model .link a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.model .link a:hover {
+    color: #f1c40f; /* تغيير اللون عند المرور */
+    transform: scale(1.1); /* تأثير تكبير بسيط */
+}
+
+/* **تحسين العرض على الأجهزة الصغيرة (تصميم الهاتف) ** */
+@media (max-width: 768px) {
+    .models-gallery {
+        grid-template-columns: 1fr; /* عرض نموذج واحد لكل صف */
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .model {
+        width: 100%; /* جعل النماذج تأخذ كامل العرض */
+        max-width: 90%;
+        margin: 0 auto; /* توسيط النموذج */
+    }
+
+    iframe {
+        height: 250px; /* تقليل ارتفاع الإطار */
+    }
+
+    .caption {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+
+    .caption p {
+        font-size: 10px;
+    }
+
+    .caption h3 {
+        font-size: 12px;
+    }
+
+    .close-btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
