@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preload" href="image/logolouver.png" as="image">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <title>Louvre AR Website</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      min-width: 1200px;
+      overflow-x: auto;
+    }
+
+    .home {
+      background-image: url('image/home.png');
+      background-repeat: no-repeat;
+      height: 673px;
+      background-size: cover;
+    }
+
+    .info-icon {
+      position: absolute;
+      top: 61%;
+      left: 420px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      line-height: 20px;
+      background-color: #fff;
+      color: #b2937d;
+      font-size: 10px;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 50%;
+      border: 1px solid #b2937d;
+      cursor: pointer;
+    }
+
+    header {
+      background-image: url('image/home.png');
+      display: flex;
+      justify-content: center;
+      padding: 30px 40px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      font-size: larger;
+      position: sticky;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: white;
+      margin: 0 10px;
+      margin-left: 100px;
+      padding: 10px;
+      margin-top: -200px;
+      font-weight: bold;
+      margin: 10px;
+      font-size: small;
+      border-radius: 5px;
+    }
+
+    .menu a:hover {
+      background-color: none;
+    }
+
+    button {
+      color: white;
+      background-color: #8b4513;
+      border: none;
+      width: 23px;
+      margin-left: 4px;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #8b4513;
+    }
+
+    .home-content h1 {
+      font-size: 48px;
+      padding-bottom: 100px;
+      margin: 50px;
+    }
+
+    .about-section {
+      margin: 40px 0;
+    }
+
+    .section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 20px 0;
+    }
+
+    .section img {
+      width: 45%;
+      height: auto;
+    }
+
+    .section .content {
+      width: 50%;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    .section.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .section h2 {
+      color: rgba(139, 69, 19, 0.9);
+    }
+
+    .image-separators {
+      width: 100%;
+      height: 50px;
+      background: url('image/dinvas.png') no-repeat center center;
+      background-size: contain;
+      margin: 20px 0;
+    }
+
+    .image-separator {
+      width: 100%;
+      height: 100px;
+      align-items: center;
+      text-align: end;
+      background: url('image/divsc.jpeg') no-repeat center center;
+      background-size: contain;
+      margin: 20px 0;
+    }
+
+    .services-container {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      flex-wrap: wrap;
+      gap: 50px;
+      margin-bottom: 40px;
+      align-items: center;
+
+    }
+
+    .service-box {
+      width: 23%;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .services-container img {
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .service-box img {
+      width: 95%;
+      height: auto;
+      margin: 0 auto;
+
+    }
+
+    .services-container img:hover {
+  transform: scale(1.05); /* تكبير بسيط */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* ظل جميل عند التمرير */
+}
+
+    .service-box h3 {
+      font-size: 16px;
+      font-weight: bold;
+      color: rgba(139, 69, 19, 0.9);
+      margin-top: 10px;
+    }
+
+    .service-box p {
+      font-size: 14px;
+      margin: 10px 0;
+      text-decoration-line: space;
+    }
+
+    .service-box button {
+      display: inline-block;
+      align-items: center;
+      margin-top: 10px;
+      width: 35%;
+    }
+    
+  
+
+
+    .contact {
+      margin: 40px 0;
+    }
+
+    .contact form {
+      width: 60%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact .form-row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .contact .form-row input {
+      flex: 1;
+      color: black;
+      background-color: rgba(229, 206, 164, 0.3);
+      padding: 10px;
+      height: 58px;
+      padding-left: 20px;
+      width: 50%;
+      font-size: 15px;
+      font-weight: bold;
+      border: none;
+      border-radius: 20px;
+      font-family: Arial Black;
+      -webkit-text-fill-color: #b2937d;
+    }
+
+    textarea {
+      padding-left: 25px;
+      padding-top: 35px;
+      font-size: 15px;
+      font-weight: bold;
+      width: 880px;
+      height: 250px;
+      font-family: Arial Black;
+      -webkit-text-fill-color: #b2937d;
+      background-color: rgba(229, 206, 164, 0.3);
+      border: none;
+      border-radius: 20px;
+      resize: none;
+    }
+
+    .contact button {
+      margin: 10px auto;
+      width: 730px;
+      padding: 10px 20px;
+      height: 80px;
+      padding: 15px;
+      font-size: 22px;
+      margin-top: 15px;
+      background-color: #b2937d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 30px;
+    }
+
+    footer {
+      background-image: url('image/footers.jpeg');
+      height: 300px;
+      color: white;
+      padding: 20px;
+      text-decoration: none;
+    }
+
+    .footer-menu {
+      margin-bottom: 20px;
+      margin-top: 30px;
+      padding: 40px;
+      text-decoration: none;
+    }
+
+    .footer-menu a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      margin: 0 50px;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 250px;
+    }
+
+    .footer-menu a:hover {
+      text-decoration: none;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+      text-decoration: none;
+    }
+
+    .social-icons img {
+      width: 37px;
+      height: 35px;
+      margin: 0 5px;
+      cursor: pointer;
+      color: white;
+      margin: 0 10px;
+      padding: 10px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .social-icons a {
+      text-decoration: none;
+    }
+
+    .social-icons img:hover {
+      opacity: 0.8;
+    }
+
+    .separator {
+      width: 100%;
+      height: 250px;
+      background: url('image/dinvas.png') no-repeat center center;
+      background-size: cover;
+      margin: 20px 0;
+    }
+
+    .image-separator {
+      width: 100%;
+      height: 250px;
+      background: url('image/divsc.jpeg') no-repeat center center;
+      background-size: cover;
+      margin: 20px 0;
+    }
+
+    .modal-background {
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #b2937d;
+      padding: 20px;
+      border-radius: 50px;
+      height: 950px;
+      width: 700px;
+      max-width: 100%;
+      text-align: center;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 30px;
+      cursor: pointer;
+      color: #7B4B1D;
+    }
+
+    .modal-content input {
+      text-decoration: none;
+      display: block;
+      margin: 20px auto;
+      padding: 12px;
+      width: 350px;
+      border-radius: 30px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      -webkit-text-fill-color: #7B4B1D;
+    }
+
+    .modal-content button {
+      background-color: rgba(102, 51, 0, 0.8);
+      color: white;
+      display: block;
+      width: 60%;
+      margin: 10px auto;
+      cursor: pointer;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 14px;
+    }
+
+    .modal-content button:hover {
+      background-color: rgba(102, 51, 0, 1);
+    }
+
+    .start-tour {
+      background-color: #7B4B1D;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 30px;
+      width: 100%;
+    }
+
+    #send-contact-btn {
+      width: 750px;
+      height: 60px;
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: bolder;
+      background-color: #7B4B1D;
+    }
+
+    .start-tour:hover {
+      background-color: #7B4B1D;
+    }
+
+    #popup-modal,
+    #thank-you-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      border-radius: 20px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .thank-you-modal-content {
+      background: white;
+      padding: 30px;
+      width: 300px;
+      text-align: center;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .thank-you-modal-content h3 {
+      color: #7B4B1D;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .thank-you-modal-content span {
+      color: #8b4513;
+      font-size: 14px;
+    }
+
+    #ok-btn {
+      background-color: #8b4513;
+      color: white;
+      width: 100px;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #ok-btn:hover {
+      background-color: #7B4B1D;
+    }
+
+    open-modal {
+      color: white;
+      border-radius: 7px;
+      width: 1000%;
+      height: 42px;
+    }
+
+    .logo {
+      height: 50px;
+      width: 550px;
+      object-fit: contain;
+      margin-left: 150px;
+      margin-top: 40px;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      z-index: 100;
+    }
+
+    .btn {
+      position: fixed;
+      top: 30px;
+      right: 200px;
+      font-size: 15px;
+      width: 140px;
+      height: 17px;
+      border-radius: 3px;
+      margin-top: 20px;
+      text-decoration-line: none;
+      background-color: #7B4B1D;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      margin-left: 252px;
+      z-index: 1001;
+    }
+
+    .btn:hover {
+      background-color: #5A3414;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .btn {
+        position: fixed;
+        top: 30px;
+        right: 50px;
+        font-size: 15px;
+        width: 140px;
+        height: 17px;
+        border-radius: 3px;
+        margin-top: 20px;
+        text-decoration-line: none;
+        background-color: #7B4B1D;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        margin-left: 252px;
+        z-index: 1001;
+      }
+
+      .logo {
+        height: 60px;
+        max-width: 170px;
+      }
+
+      .contact form {
+        width: 50%;
+        margin: 0 auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .contact .form-row {
+        display: flex;
+        justify-content: flex-start;
+        gap: 15px;
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .contact .form-row input {
+        flex: 1;
+        background-color: rgba(229, 206, 164, 0.3);
+        color: black;
+        padding: 10px;
+        height: 80px;
+        font-size: 18px;
+        max-width: 650px;
+        font-weight: bold;
+        border: none;
+        border-radius: 30px;
+        font-family: Arial Black;
+        -webkit-text-fill-color: #b2937d;
+        text-align: left;
+        width: 255%;
+      }
+
+      .contact textarea {
+        width: 100%;
+        height: 220px;
+        padding-left: 15px;
+        padding-top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: Arial Black;
+        -webkit-text-fill-color: #b2937d;
+        background-color: rgba(229, 206, 164, 0.3);
+        border: none;
+        border-radius: 30px;
+        resize: none;
+        text-align: left;
+      }
+
+      .contact button {
+        width: 75%;
+        height: 75px;
+        padding: 12px;
+        font-size: 20px;
+        margin-top: 15px;
+        background-color: #b2937d;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        border-radius: 30px;
+      }
+
+      .contact p {
+        font-size: 20px;
+        text-align: left;
+        line-height: 1.6;
+        color: #5a4634;
+        margin-bottom: 15px;
+      }
+
+      .log {
+        margin-right: 200px;
+      }
+
+      .home-content h1 {
+        text-align: left;
+        font-size: 20px;
+        margin-left: 20px;
+        padding: 20px;
+        padding-right: 20px;
+      }
+
+      #chatbase-widget {
+        bottom: 70px !important;
+        right: 10px !important;
+        left: 20px !important;
+        width: calc(100% - 20px) !important;
+        max-width: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Home Section -->
+  <div class="home" id="home">
+    <header style="margin-bottom: 200px; padding-right: 20px;">
+      <img src="image/logolouver.png" alt="لوجو الموقع" class="logo">
+
+      <nav class="menu" style=" margin-left: 256px; margin-top: 30px;">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn">Get in Touch</a>
+      <br>
+    </header>
+
+    <div class="home-content">
+      <h1 style="margin-right: 360px; margin-top: -78px; padding-right: 200px; color: #fff; font-weight: bold; font-size: 45px; font-family: Arial Black;">
+        A journey through time<br><span style="font-family:Arial Black; color: #fff; margin-top: 50px; margin-right: 225px; font-size: 42px;">begins here <b style="font-family: Arial Rounded MT Bold; font-size: 42px; size: 42px;">...</b></span>
+      </h1>
+    </div>
+  </div>
+
+  <!-- The Popup Modal -->
+  <div id="popup-modal" class="modal-background">
+    <div class="modal-content" style="width: 516px; height: 298px; background-color: rgba(229,206,164,0.90); border-radius: 20px;">
+      <span class="close-btn">&times;</span>
+      <h2 style="color: #7B4B1D; font-family: Palatino Linotype; font-weight: bold; font-size: 30px;">Welcome to our inveterate world!</h2>
+      <form id="contact-form" style="margin-top: 20px; height: 200px;">
+        <div>
+          <input type="text" id="name" name="name" placeholder="Your Name:" required style="color: black; text-decoration-color: black;">
+        </div>
+        <div>
+          <input type="email" id="email" name="email" placeholder="Email:" required style="color: black;">
+        </div>
+        <button type="submit" style="background-color: #7B4B1D; height: 40px; width: 190px; font-size: medium; color: #fff;">Start a Tour</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div class="section section1 reverse" id="about">
+    <img src="image/T.png" alt="Section 1 Image" style="margin-right: 70px;">
+    <div class="content" style="margin-left: 260px;">
+      <h2 style="color: #7B4B1D; font-size: 35px; font-family: Palatino Linotype; font-weight: bold;">LOUVER <span style="font-style: Palatino Linotype; font-weight: bold; color: #7B4B1D; font-size: 40px; font-family: Palatino Linotype;">masterpieces</span></h2>
+      <p style="font-size: 10px; text-align: left; line-height: 1.5;">
+        The Louvre Museum in Paris is one of the world's most famous and<br>
+        largest art museums, housing thousands of artworks from ancient<br>
+        civilizations to the 19th century. Originally a royal palace, it became a<br>
+        museum in 1793. Its collection includes iconic pieces like the Mona Lisa<br>
+        and Venus de Milo. The museum's striking glass pyramid entrance,<br>
+        designed by architect I. M. Pei, adds a modern touch to its historic<br>
+        architecture. The Louvre remains a global cultural landmark, drawing<br>
+        millions of visitors each year
+      </p>
+      <button class="open-modal" id="getintouchBtn1" style="color: white; margin-right: 120px; border-radius: 7px; width: 30%; height: 42px; background-color: #7B4B1D; margin-bottom: 10px;">See More</button>
+    </div>
+  </div>
+
+  <div class="section section2" style="margin-right: 50px;">
+    <img src="image/r.png" alt="Section 2 Image" style="margin-left: 130px;">
+    <div class="content" style="margin-left:40px;">
+      <h5 style="color: #7B4B1D; font-size: 13px; font-weight: bold;">LOUVER MASTERPIECES</h5>
+      <h2 style="color: black; font-weight: bold; font-size: 40px; font-family: Palatino Linotype;">Step Into History with<br>Augmented Reality</h2>
+      <p style="font-size: 10px; line-height: 1.4;">
+        Immerse yourself in an innovative and interactive experience at the<br>
+        Louvre Museum with our Augmented Reality (AR) Tour. Whether you're<br>
+        visiting in person or exploring from the comfort of your home, our AR tour<br>
+        brings art, history, and culture to life like never before.
+      </p>
+      <button class="open-modal" id="getintouchBtnAbout1" style="color: white; size: 20px; width: 28%; height: 43px; background-color: #7B4B1D; border-radius: 5px;">Start Your Tour</button>
+    </div>
+  </div>
+
+  <!-- Image Separator -->
+  <div class="separator"></div>
+
+  <!-- Services Section -->
+  <div id="services">
+    <h1 style="color: #7B4B1D; font-family: Palatino Linotype; font-weight: bold; font-size: 40px;">
+      The most important masterpieces<br>in the museum
+    </h1>
+
+    <div class="services-container">
+      <div class="service-box">
+        <img src="image/monaliza.png" alt="Service 1">
+        <div class="content" style="margin-left: 20px; text-align: center;">
+          <h3 style="font-size: 25px; font-weight: bold; color: black; text-align: center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Mona Lisa</h3>
+          <p style="font-size: 10px; text-align: left; margin-right: 18px; line-height: 1.6;">
+            One of the most famous and recognized paintings<br>
+            globally, The Mona Lisa is celebrated for its enigmatic<br>
+            smile and innovative Leonardo's use of sfumato, a<br>
+            technique that creates soft transitions between light<br>
+            and shadow, giving the subject a lifelike quality. Her<br>
+            gaze, which seems to follow the viewer from every<br>
+            angle, adds to the painting's mysterious allure.
+          </p>
+          <button id="getintouchBtn2" class="open-modal" style="size: 20px; width: 45%; font-size: 9px; font-weight: bold; margin-right: 50px; color: white; height: 30px; background-color: #7B4B1D;">Discover Now</button>
+        </div>
+      </div>
+
+      <div class="service-box">
+        <img src="image/code.png" alt="Service 2">
+        <div class="content" style="margin-left: 20px; text-align: center;">
+          <h3 style="font-size: 25px; font-weight: bold; color: black; margin-right: 35px;">The Code of Hammurabi</h3>
+          <p style="font-size: 10px; text-align: left; margin-left: 30px; line-height: 1.6;">
+            one of the earliest and most complete written<br>
+            legal codes, Carved onto a large stone stele, it<br>
+            consists of 282 laws that cover various aspects of<br>
+            daily life, including justice, property, family, and<br>
+            labor. The laws are based on the principle of lex<br>
+            talionis or "an eye for an eye," prescribing<br>
+            punishments that correspond to the crime.
+          </p>
+          <button id="getintouchBtn3" class="open-modal" style="size: 20px; width: 45%; font-size: 9px; font-weight: bold; color: white; height: 30px; background-color: #7B4B1D;">Discover Now</button>
+        </div>
+      </div>
+
+      <div class="service-box">
+        <img src="image/victory.png" alt="Service 3">
+        <div class="content" style="margin-left: 20px; text-align: center;">
+          <h3 style="font-size: 25px; font-weight: bold; color: black; margin-right: 35px;">The Winged Victory</h3>
+          <p style="font-size: 10px; text-align: left; margin-left: 30px; line-height: 1.6; padding-bottom: 5px;">
+            The Statute is an ancient Greek sculpture that<br>
+            represents the goddess Nike, symbolizing victory.<br>
+            It s famous for its dynamic pose with Nike<br>
+            appearing to descend from the heavens with her<br>
+            wings spread wide, conveying a sense of<br>
+            movement and triumph. Though the arms and<br>
+            head are missing.
+          </p>
+          <button id="getintouchBtn4" class="open-modal" style="size: 20px; width: 45%; font-size: 9px; margin-right: 20px; font-weight: bold; background-color: #7B4B1D; color: white; height: 30px;">Discover Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Separator -->
+  <div style="height: 315px; text-align: center;" class="image-separator">
+    <h1 style="color: rgba(229, 206, 146, 0.88); padding: 25px; font-size: xx-large;">
+      Discover the secrets of history and the<br>
+      voices of the past
+    </h1>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="contact" id="contact">
+    <h2 style="text-align: center; font-family: Segoe UI Historic; font-weight: bold; color: #7B4B1D;">Contact Us</h2>
+    <h4 style="text-align: center; color: rgba(123, 75, 29,0.55);">For more information about the services we provide</h4>
+    <form id="user-form">
+      <div class="form-row">
+        <input type="text" id="contact-name" name="name" placeholder="Full Name:" required>
+        <input type="email" id="contact-email" name="email" placeholder="Email:" required>
+      </div>
+      <textarea id="contact-message" name="message" placeholder="Your Message:" required></textarea>
+      <button id="send-contact-btn" type="button" style="width: 100%;">Send</button>
+    </form>
+
+    <div id="thank-you-modal" class="modal-background">
+      <div class="thank-you-modal-content">
+        <h3 style="color: #7B4B1D; font-size: 30px; font-style: bold; margin-top: 20px;">
+          Thank you! <br>
+          <span style="color: #8b4513; font-size: small; margin-bottom: 10px;">We will review your message soon.</span>
+        </h3>
+        <button id="ok-btn">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <nav class="footer-menu" style="margin-left: 90px; padding-bottom:5px; text-decoration:none; margin-top: 10px;">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a><img src="image/logolouver.png" alt="لوجو الموقع" style="width: 150px; height: 35%; margin-top: -10px;"></a>
+      <a href="#services">Service</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="social-icons" style="margin-top: 50px; text-decoration: none; font-weight: bold; border-color: aliceblue;">
+      <a href="https://www.instagram.com/museelouvre/" target="_blank"><img src="image/nstagram.png" alt=""></a>
+      <a href="https://www.facebook.com/museedulouvre/" target="_blank"><img src="image/facebokx.png" alt=""></a>
+      <a href="https://www.twitter.com/MuseeLouvre" target="_blank"><img src="image/twitter.png" alt=""></a>
+      <a href="https://www.linkedin.com/company/museedulouver" style="color: white; border-image: none; text-decoration: none;" target="_blank"><img src="image/linkedlist.png" alt=""></a>
+      <a href="https://www.whatsapp.com/send?phone=1234567890" target="_blank"><img src="image/whatsAppim.png" alt=""></a>
+    </div>
+    <p style="margin-top: 65px;">copyright© 2024 LOUVER masterpieces</p>
+  </footer>
+ 
+<!-- استيراد Firebase -->
+<script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
+
+<script type="module">
+  // استيراد Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+  import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+  // إعداد Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyDK5pm_X_4dKvyye-H4LCFezgwyIaoZr_0",
+    authDomain: "louver3dfinal.firebaseapp.com",
+    databaseURL: "https://louver3dfinal-default-rtdb.firebaseio.com",
+    projectId: "louver3dfinal",
+    storageBucket: "louver3dfinal.appspot.com",
+    messagingSenderId: "18851056045",
+    appId: "1:18851056045:web:f8c4f8751eb11e1ddaf924",
+    measurementId: "G-1JCCKBL5BL"
+  };
+
+  // تهيئة Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+
+  // تعريف العناصر
+  const buttons = document.querySelectorAll('.open-modal');
+  const modal = document.getElementById('popup-modal');
+  const thankYouModal = document.getElementById('thank-you-modal');
+  const closeBtn = document.querySelector('.close-btn');
+  const form = document.getElementById('contact-form');
+  const okBtn = document.getElementById('ok-btn');
+  const sendBtn = document.getElementById('send-contact-btn');
+  const contactName = document.getElementById('contact-name');
+  const contactEmail = document.getElementById('contact-email');
+  const contactMessage = document.getElementById('contact-message');
+
+  let sourceButton = null;
+
+  // فتح المودال عند الضغط على الأزرار
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      if (button.id === 'send-contact-btn') {
+        // لن نفتح نافذة الشكر مباشرة هنا، بل سننتظر التحقق من البيانات
+      } else {
+        modal.style.display = 'flex';
+        sourceButton = button;
+      }
+    });
+  });
+
+  // زر إغلاق المودال
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  // زر OK لإغلاق رسالة الشكر
+  okBtn.addEventListener('click', () => {
+    thankYouModal.style.display = 'none';
+    // مسح النموذج بعد الإرسال
+    form.reset();
+  });
+
+  // إغلاق المودال عند النقر على الخلفية
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+    if (event.target === thankYouModal) {
+      thankYouModal.style.display = 'none';
+    }
+  });
+
+  // حفظ بيانات المستخدم في Firebase Realtime Database
+  function saveUserData(name, email, message = '') {
+    if (!name || !email) {
+      alert("يرجى إدخال الاسم والإيميل!");
+      return false;
+    }
+
+    const usersRef = ref(database, 'users');
+    const newUserRef = push(usersRef);
+
+    return set(newUserRef, {
+      username: name,
+      email: email,
+      message: message,
+      timestamp: new Date().toISOString()
+    })
+    .then(() => {
+      console.log("✅ تم حفظ بيانات المستخدم بنجاح!");
+      return true;
+    })
+    .catch((error) => {
+      console.error("❌ خطأ أثناء حفظ البيانات:", error);
+      alert("حدث خطأ أثناء حفظ البيانات.");
+      return false;
+    });
+  }
+
+  // عند إرسال النموذج الرئيسي
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (!name || !email) {
+      alert("يرجى إدخال الاسم والإيميل!");
+      return;
+    }
+
+    const success = await saveUserData(name, email);
+    if (success) {
+      modal.style.display = 'none';
+      
+      // توجيه المستخدم إلى الصفحة المناسبة
+      if (sourceButton) {
+        if (sourceButton.closest('#services')) {
+          console.log("🔄 الانتقال إلى صفحة 3D Viewer");
+          window.location.href = 'gallery.html';
+        } else {
+          console.log("🔄 الانتقال إلى صفحة المعرض");
+          window.location.href = '3dvidio.html';
+        }
+      }
+    }
+  });
+
+  // عند إرسال نموذج الاتصال
+  sendBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    
+    // التحقق من أن جميع الحقول مملوءة
+    const name = contactName.value.trim();
+    const email = contactEmail.value.trim();
+    const message = contactMessage.value.trim();
+    
+    if (!name) {
+      alert("Please enter your name");
+      contactName.focus();
+      return;
+    }
+    
+    if (!email) {
+      alert("Please enter your email");
+      contactEmail.focus();
+      return;
+    }
+    
+    if (!message) {
+      alert("Please enter your message");
+      contactMessage.focus();
+      return;
+    }
+    
+    // التحقق من صحة الإيميل
+    if (!validateEmail(email)) {
+      alert("Please enter a valid email address");
+      contactEmail.focus();
+      return;
+    }
+    
+    // إذا كانت جميع الحقول صحيحة، حفظ البيانات وعرض رسالة الشكر
+    const success = await saveUserData(name, email, message);
+    if (success) {
+      thankYouModal.style.display = 'flex';
+    }
+  });
+
+  // دالة للتحقق من صحة الإيميل
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+
+  // تحسين تصميم الموبايل عند تغيير الحجم
+  window.addEventListener('resize', function() {
+    const width = window.innerWidth;
+
+    if (width <= 768) {
+      document.querySelector('header').style.flexDirection = 'row';
+      document.querySelector('.home-content h1').style.fontSize = '24px';
+    } else {
+      document.querySelector('header').style.flexDirection = 'column';
+      document.querySelector('.home-content h1').style.fontSize = '48px';
+    }
+  });
+</script>
+
+
+  <script>
+    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="zIIMk7GPGr3viGqs8PjpK";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+  </script>
+</body>
+</html>
